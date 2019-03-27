@@ -47,12 +47,12 @@ if __name__ == '__main__':
     parser.add_argument('--word-vectors-dim', type=int, default=100,
                         help='number of dimensions of word vectors (default: 300)')
     parser.add_argument('--skip-training', help='will load pre-trained model', action='store_true')
-    parser.add_argument('--device', type=int, default=-1, help='GPU device, -1 for CPU (default: 0)')
+    parser.add_argument('--device', type=int, default=0, help='GPU device, -1 for CPU (default: 0)')
     parser.add_argument('--wide-conv', action='store_true', default=False,
                         help='use wide convolution instead of narrow convolution (default: false)')
     parser.add_argument('--sparse-features', action='store_true',
                         default=False, help='use sparse features (default: false)')
-    parser.add_argument('--batch-size', type=int, default=32, help='input batch size for training (default: 64)')
+    parser.add_argument('--batch-size', type=int, default=128, help='input batch size for training (default: 64)')
     parser.add_argument('--epochs', type=int, default=10, help='number of epochs to train (default: 10)')
     parser.add_argument('--optimizer', type=str, default='adam', help='optimizer to use: adam or sgd (default: adam)')
     parser.add_argument('--lr', type=float, default=0.001, help='learning rate (default: 0.001)')

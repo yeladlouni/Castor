@@ -80,7 +80,7 @@ class Semeval(Dataset):
 
 
     @classmethod
-    def splits(cls, path, train='train.json', validation='dev.json', test='test.json', **kwargs):
+    def splits(cls, path, train='train_2016.json', validation='dev_2016.json', test='test_2017.json', **kwargs):
         return super(Semeval, cls).splits(path, train=train, validation=validation, test=test, **kwargs)
 
     @classmethod
