@@ -1,3 +1,4 @@
+from common.evaluators.semeval_evaluator import SemevalEvaluator
 from .evaluators.sick_evaluator import SICKEvaluator
 from .evaluators.msrvid_evaluator import MSRVIDEvaluator
 from .evaluators.sst_evaluator import SSTEvaluator
@@ -31,7 +32,8 @@ class EvaluatorFactory(object):
         'Yelp2014': ReutersEvaluator,
         'SNLI': SNLIEvaluator,
         'sts2014': STS2014Evaluator,
-        'Quora': QuoraEvaluator
+        'Quora': QuoraEvaluator,
+        'Semeval': SemevalEvaluator
     }
 
     evaluator_map_nce = {

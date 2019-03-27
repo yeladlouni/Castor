@@ -12,7 +12,7 @@ from common.dataset import DatasetFactory
 from common.evaluation import EvaluatorFactory
 from common.train import TrainerFactory
 from utils.serialization import load_checkpoint
-from .model import ESIM
+from model import ESIM
 
 
 def get_logger():
@@ -39,20 +39,20 @@ def evaluate_dataset(split_name, dataset_cls, model, embedding, loader, batch_si
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch implementation of Multi-Perspective CNN')
-    parser.add_argument('model_outfile', help='file to save final model')
-    parser.add_argument('--dataset', help='dataset to use, one of [sick, msrvid, trecqa, wikiqa]', default='sick')
+    parser.add_argument('--model_outfile', help='file to save final model', default='./esim.pt')
+    parser.add_argument('--dataset', help='dataset to use, one of [sick, msrvid, trecqa, wikiqa]', default='semeval')
     parser.add_argument('--word-vectors-dir', help='word vectors directory',
-                        default=os.path.join(os.pardir, 'Castor-data', 'embeddings', 'GloVe'))
-    parser.add_argument('--word-vectors-file', help='word vectors filename', default='glove.840B.300d.txt')
-    parser.add_argument('--word-vectors-dim', type=int, default=300,
+                        default=os.path.join(os.pardir, 'embeddings'))
+    parser.add_argument('--word-vectors-file', help='word vectors filename', default='fasttext.webteb.100d.vec')
+    parser.add_argument('--word-vectors-dim', type=int, default=100,
                         help='number of dimensions of word vectors (default: 300)')
     parser.add_argument('--skip-training', help='will load pre-trained model', action='store_true')
-    parser.add_argument('--device', type=int, default=0, help='GPU device, -1 for CPU (default: 0)')
+    parser.add_argument('--device', type=int, default=-1, help='GPU device, -1 for CPU (default: 0)')
     parser.add_argument('--wide-conv', action='store_true', default=False,
                         help='use wide convolution instead of narrow convolution (default: false)')
     parser.add_argument('--sparse-features', action='store_true',
                         default=False, help='use sparse features (default: false)')
-    parser.add_argument('--batch-size', type=int, default=64, help='input batch size for training (default: 64)')
+    parser.add_argument('--batch-size', type=int, default=32, help='input batch size for training (default: 64)')
     parser.add_argument('--epochs', type=int, default=10, help='number of epochs to train (default: 10)')
     parser.add_argument('--optimizer', type=str, default='adam', help='optimizer to use: adam or sgd (default: adam)')
     parser.add_argument('--lr', type=float, default=0.001, help='learning rate (default: 0.001)')
@@ -96,7 +96,7 @@ if __name__ == '__main__':
     filter_widths = list(range(1, args.max_window_size + 1)) + [np.inf]
     ext_feats = dataset_cls.EXT_FEATS if args.sparse_features else 0
 
-    model = ESIM(embedding_size=args.word_vectors_dim, device=args.device, num_units=args.word_vectors_dim,
+    model = ESIM(embedding_size=args.word_vectors_dim, device=device, num_units=args.word_vectors_dim,
                   num_classes=dataset_cls.NUM_CLASSES, dropout=args.dropout, max_sentence_length=args.maxlen)
 
     model = model.to(device)

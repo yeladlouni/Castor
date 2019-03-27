@@ -3,6 +3,7 @@ import os
 import torch
 import torch.nn as nn
 
+from datasets.semeval import Semeval
 from datasets.sick import SICK
 from datasets.msrvid import MSRVID
 from datasets.trecqa import TRECQA
@@ -77,6 +78,11 @@ class DatasetFactory(object):
             train_loader, dev_loader, test_loader = SNLI.iters(dataset_root, word_vectors_file, word_vectors_dir, batch_size, device=device, unk_init=UnknownWordVecCache.unk)
             embedding = nn.Embedding.from_pretrained(SNLI.TEXT_FIELD.vocab.vectors)
             return SNLI, embedding, train_loader, test_loader, dev_loader
+        elif dataset_name == 'semeval':
+            dataset_root = os.path.join(os.pardir, 'data', 'semeval/')
+            train_loader, dev_loader, test_loader = Semeval.iters(dataset_root, word_vectors_file, word_vectors_dir, batch_size, device=device, unk_init=UnknownWordVecCache.unk)
+            embedding = nn.Embedding.from_pretrained(Semeval.TEXT_FIELD.vocab.vectors)
+            return Semeval, embedding, train_loader, test_loader, dev_loader
         elif dataset_name == 'sts2014':
             dataset_root = os.path.join(castor_dir, os.pardir, 'Castor-data', 'datasets', 'STS-2014')
             train_loader, dev_loader, test_loader = STS2014.iters(dataset_root, word_vectors_file, word_vectors_dir, batch_size, device=device, unk_init=UnknownWordVecCache.unk)

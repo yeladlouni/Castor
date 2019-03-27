@@ -1,3 +1,4 @@
+from common.trainers.semeval_trainer import SemevalTrainer
 from .trainers.sick_trainer import SICKTrainer
 from .trainers.msrvid_trainer import MSRVIDTrainer
 from .trainers.trecqa_trainer import TRECQATrainer
@@ -30,6 +31,7 @@ class TrainerFactory(object):
         'IMDB': ReutersTrainer,
         'Yelp2014': ReutersTrainer,
         'snli': SNLITrainer,
+        'semeval': SemevalTrainer,
         'sts2014': STS2014Trainer,
         'quora': QuoraTrainer
     }
