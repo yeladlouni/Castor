@@ -52,7 +52,7 @@ if __name__ == '__main__':
                         help='use wide convolution instead of narrow convolution (default: false)')
     parser.add_argument('--sparse-features', action='store_true',
                         default=False, help='use sparse features (default: false)')
-    parser.add_argument('--batch-size', type=int, default=128, help='input batch size for training (default: 64)')
+    parser.add_argument('--batch-size', type=int, default=32, help='input batch size for training (default: 64)')
     parser.add_argument('--epochs', type=int, default=10, help='number of epochs to train (default: 10)')
     parser.add_argument('--optimizer', type=str, default='adam', help='optimizer to use: adam or sgd (default: adam)')
     parser.add_argument('--lr', type=float, default=0.001, help='learning rate (default: 0.001)')
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     parser.add_argument('--max-window-size', type=int, default=3,
                         help='windows sizes will be [1,max_window_size] and infinity (default: 3)')
     parser.add_argument('--dropout', type=float, default=0.5, help='dropout probability (default: 0.1)')
-    parser.add_argument('--maxlen', type=int, default=60, help='maximum length of text (default: 60)')
+    parser.add_argument('--maxlen', type=int, default=30, help='maximum length of text (default: 60)')
     parser.add_argument('--seed', type=int, default=1234, help='random seed (default: 1234)')
     parser.add_argument('--tensorboard', action='store_true', default=False,
                         help='use TensorBoard to visualize training (default: false)')

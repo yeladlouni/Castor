@@ -19,6 +19,7 @@ from lstm_baseline.args import get_args
 from lstm_baseline.model import LSTMBaseline
 
 
+
 class UnknownWordVecCache(object):
     """
     Caches the first randomly generated word vector for a certain size to make it is reused.
