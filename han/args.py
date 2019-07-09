@@ -25,7 +25,7 @@ def get_args():
     parser.add_argument('--save_path', type=str, default='han/saves')
     parser.add_argument('--output_channel', type=int, default=100)
     parser.add_argument('--words_dim', type=int, default=300)
-    parser.add_argument('--embed_dim', type=int, default=300)
+    parser.add_argument('--embed_dim', type=int, default=100)
     parser.add_argument('--dropout', type=float, default=0.5)
     parser.add_argument('--epoch_decay', type=int, default=15)
     parser.add_argument('--data_dir', help='word vectors directory',

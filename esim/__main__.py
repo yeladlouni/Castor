@@ -8,6 +8,9 @@ import numpy as np
 import torch
 import torch.optim as optim
 
+import sys
+sys.path.append('/content/Castor')
+
 from common.dataset import DatasetFactory
 from common.evaluation import EvaluatorFactory
 from common.train import TrainerFactory
@@ -42,12 +45,12 @@ if __name__ == '__main__':
     parser.add_argument('--model_outfile', help='file to save final model', default='./esim.pt')
     parser.add_argument('--dataset', help='dataset to use, one of [sick, msrvid, trecqa, wikiqa]', default='semeval')
     parser.add_argument('--word-vectors-dir', help='word vectors directory',
-                        default=os.path.join(os.pardir, 'embeddings'))
+                        default=os.path.join('embeddings'))
     parser.add_argument('--word-vectors-file', help='word vectors filename', default='fasttext.webteb.100d.vec')
     parser.add_argument('--word-vectors-dim', type=int, default=100,
                         help='number of dimensions of word vectors (default: 300)')
     parser.add_argument('--skip-training', help='will load pre-trained model', action='store_true')
-    parser.add_argument('--device', type=int, default=0, help='GPU device, -1 for CPU (default: 0)')
+    parser.add_argument('--device', type=int, default=-1, help='GPU device, -1 for CPU (default: 0)')
     parser.add_argument('--wide-conv', action='store_true', default=False,
                         help='use wide convolution instead of narrow convolution (default: false)')
     parser.add_argument('--sparse-features', action='store_true',
