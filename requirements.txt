@@ -1,6 +1,6 @@
 Flask==0.12.1
 gensim==1.0.1
-nltk==3.2.5
+nltk==3.6.3
 numpy==1.14.0
 pandas==0.19.2
 Cython==0.28.2
